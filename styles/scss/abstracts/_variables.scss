@@ -1,0 +1,27 @@
+:root {
+  // Colors:
+  --clr-cyan: hsl(180, 66%, 49%);
+  --clr-cyan-hover: hsl(180, 66%, 75%);
+  --clr-violet: hsl(257, 27%, 26%);
+  --clr-violet-line: hsl(257, 20%, 35%);
+
+  --clr-red: hsl(0, 87%, 67%);
+
+  --clr-gray-000: hsl(230, 25%, 95%);
+  --clr-gray-100: hsl(0, 0%, 75%);
+  --clr-gray-200: hsl(257, 7%, 63%);
+  --clr-gray-300: hsl(255, 11%, 22%);
+  --clr-gray-400: hsl(260, 8%, 14%);
+
+  // Font weights
+  --fw-400: 400;
+  --fw-500: 500;
+  --fw-600: 600;
+  --fw-700: 700;
+}
+
+// Breakpoints
+$breakpoints: (
+  medium: 48em,
+  large: 64em,
+);

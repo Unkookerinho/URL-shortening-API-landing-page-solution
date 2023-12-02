@@ -1,0 +1,38 @@
+@use '../abstracts/mixins' as *;
+
+.btn {
+  cursor: pointer;
+  
+  background-color: var(--clr-cyan);
+  border: none;
+
+  color: white;
+  font-weight: var(--fw-600);
+
+  transition: background-color .2s;
+
+  &__menu {
+    background: none;
+  }
+
+  &__oval {
+    @include cyanHover;
+    border-radius: 999px;
+
+    &--sign-up {
+      padding: 0.5em 1.5em;
+    }
+
+    &--get-started {
+      padding: 0.8rem 2.75rem;
+      font-size: 19px;
+    }
+  }
+
+  &__square {
+    @include cyanHover;
+    border-radius: 5px;
+    padding: 0.6rem 2.75rem;
+    font-size: 19px;
+  }
+}

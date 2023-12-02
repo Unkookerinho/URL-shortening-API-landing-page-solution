@@ -1,0 +1,162 @@
+@use '../abstracts/mixins' as *;
+
+// Mobile navbar
+header {
+  @include flex(row, space-between);
+  padding: 2.5rem 1.5rem 1.5rem 1.5rem;
+
+  position: relative;
+
+  nav {
+    position: absolute;
+    z-index: 1000;
+  
+    background-color: var(--clr-violet);
+    border-radius: 10px;
+  
+    top: 100px;
+    left: 1.5rem;
+    right: 1.5rem;
+
+    max-height: 0px;
+    opacity: 0;
+    overflow: hidden;
+
+    transition: max-height .4s, opacity .3s .3s;
+  
+    ul {
+      @include flex(column, center, center, 1.75rem);
+      padding: 0rem 1.5rem;
+      opacity: 0;
+
+      transition: padding .4s, opacity .2s;
+
+      .hr {
+        width: 100%;
+        height: 1px;
+        background-color: var(--clr-violet-line);
+      }
+
+      li a {
+        font-size: 17px;
+        font-weight: var(--fw-600);
+        color: white;
+      }
+  
+      // Setting width of Sign Up button to 100%
+      li:nth-child(6) {
+        width: 100%;
+  
+        .btn {
+          width: 100%
+        }
+      }
+    }
+  }
+
+  // Nav animation
+  nav.active {
+    max-height: 366px;
+    opacity: 1;
+    
+    transition: max-height .4s, opacity .3s;
+
+    ul {
+      padding: 2.5rem 1.5rem;
+      opacity: 1;
+    }
+  }
+  
+  // Hamburger animation
+  .btn__menu {
+    .line {
+      transition: y 0.2s ease-in 0.2s, rotate 0.2s ease-in , opacity 0s 0.2s; 
+      transform-origin: center;
+    }
+
+    &.active {
+      .line { 
+        transition: y 0.2s ease-in, rotate 0.2s ease-in 0.2s, opacity 0s 0.2s;
+      }
+      .top {
+        y: 45px;
+        rotate: -45deg;
+      }
+
+      .mid {
+        opacity: 0;
+      }
+
+      .bot {
+        y: 45px;
+        rotate: 45deg;
+      }
+    }
+  }
+}
+
+
+// Desktop navbar
+@include media(large) {
+  header {
+    @include center;
+    padding-block: 3rem;
+
+    .logo {
+      width: clamp(10rem, 12vw, 11rem);
+    }
+
+    nav {
+      width: 100%;
+      position: initial;
+      background: none;
+      opacity: 1;
+      max-height: fit-content;
+
+      ul {
+        @include flex(row);
+        gap: 2rem;
+        padding: 0;
+        opacity: 1;
+
+        li a {   
+          color: var(--clr-gray-200);
+          transition: color .2s;
+          
+          &:hover {
+            color: var(--clr-gray-400);
+          }
+        }
+
+        // Pushing nav from logo
+        li:nth-child(1) {
+          margin-left: 3rem;
+        }
+
+        // Pushing Login/Sign Up section to the right from rest of nav
+        li:nth-child(3) {
+          margin-right: auto;
+        }
+
+        // Resetting Sign Up button width
+        li:nth-child(6) {
+          width: fit-content;
+        }
+
+        .hr {
+          display: none;
+        }
+      }
+    }
+
+    nav.active {
+      ul {
+        padding: 0;
+      }
+    }
+
+    .btn__menu {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,99 @@
+@use '../abstracts/mixins' as *;
+
+// Pre-footer
+.pre-footer {
+  background: url(/images/bg-boost-mobile.svg) no-repeat, var(--clr-violet);
+  background-size: cover;
+  padding-block: 5.5rem;
+  
+  div {
+    @include flex(column, center, center, 1rem);
+    @include center;
+  }
+}
+
+@include media(medium) {
+  .pre-footer {
+    background: url(/images/bg-boost-desktop.svg) no-repeat, var(--clr-violet);
+    background-size: cover;
+    h4 {
+      margin-bottom: 0.75rem;
+    }
+  }
+} 
+
+// Footer 
+
+footer {
+  background-color: var(--clr-gray-400);
+
+  .wrapper {
+    @include flex(column, center, center, 3rem);
+    padding: 4rem;
+  
+    ul {
+      @include flex(column, center, center, 0.5rem);
+  
+      & li:first-child {
+        cursor: text;
+        font-weight: var(--fw-600);
+        color: white;
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+  
+      li {
+        cursor: pointer;
+        font-weight: var(--fw-400);
+        font-size: 0.95rem;
+        
+        a {
+          color: var(--clr-gray-200);
+          transition: color .2s;
+        }
+  
+        & a:hover {
+          color: var(--clr-cyan);
+        }
+      }
+    }
+  
+    .media {
+      flex-direction: row;
+      gap: 1.5rem;
+  
+      & li:first-child {
+        cursor: pointer;
+        margin-bottom: 0;
+      }
+  
+      li svg {
+        fill: white;
+        transition: fill .2s;
+      }
+  
+      li svg:hover {
+        fill: var(--clr-cyan);
+      }
+    }
+  }
+}
+
+@include media(large) {
+  footer {
+    .wrapper {
+      @include center;
+      @include flex(row, space-around, start, 3rem);
+      padding: 5rem 0;
+  
+      ul {
+        align-items: start;
+        gap: 0.75rem;
+      }
+  
+      img {
+        margin-right: 8.5rem;
+      }
+    }
+  }
+}
