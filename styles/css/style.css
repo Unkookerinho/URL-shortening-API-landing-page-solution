@@ -4,6 +4,7 @@
   --clr-violet: hsl(257, 27%, 26%);
   --clr-violet-line: hsl(257, 20%, 35%);
   --clr-red: hsl(0, 87%, 67%);
+  --clr-red-transparent: hsla(0, 87%, 67%, 0.8);
   --clr-gray-000: hsl(230, 25%, 95%);
   --clr-gray-100: hsl(0, 0%, 75%);
   --clr-gray-200: hsl(257, 7%, 63%);
@@ -13,6 +14,10 @@
   --fw-500: 500;
   --fw-600: 600;
   --fw-700: 700;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
@@ -108,13 +113,23 @@ a {
 }
 .btn__square {
   border-radius: 5px;
-  padding: 0.6rem 2.75rem;
-  font-size: 19px;
+  padding: 0.55rem 1.8rem;
 }
 .btn__square:hover {
   background-color: var(--clr-cyan-hover);
 }
+.btn__loading {
+  background-color: var(--clr-cyan-hover);
+}
+.btn__copied, .btn__copied:hover {
+  background-color: var(--clr-violet);
+}
 
+@media (min-width: 48em) {
+  .btn__square {
+    border-radius: 7.5px;
+  }
+}
 main {
   overflow-x: hidden;
 }
@@ -211,25 +226,143 @@ main {
   color: var(--clr-gray-200);
   font-weight: var(--fw-500);
 }
+.api form input.error {
+  border: 2px solid var(--clr-red);
+}
+.api form input.error::placeholder {
+  color: var(--clr-red-transparent);
+}
+.api form .errorMessage {
+  display: none;
+}
+.api form .errorMessage.error {
+  display: block;
+  position: absolute;
+  top: 3.9rem;
+  left: 1.4rem;
+  color: var(--clr-red);
+  font-size: 10px;
+  font-style: italic;
+}
 .api form button {
   width: 100%;
   height: 48px;
+  font-size: 19px;
+}
+.api ul {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  margin-inline: 1.5rem;
+  transform: translateY(-3rem);
+}
+@media (min-width: 64em) {
+  .api ul {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+}
+.api ul li {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 1rem;
+  border-radius: 10px;
+  padding: 0.75rem;
+  width: 100%;
+  background-color: white;
+  overflow: hidden;
+  position: relative;
+}
+.api ul li::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  right: 0;
+  left: 0;
+  top: 3rem;
+  background-color: var(--clr-gray-100);
+  height: 1px;
+}
+.api ul li .input {
+  color: var(--clr-gray-400);
+  max-width: 74vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.api ul li .output-and-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 0.5rem;
+  width: 100%;
+}
+.api ul li .output-and-button .output {
+  color: var(--clr-cyan);
+  max-width: 74vw;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.api ul li .output-and-button button {
+  width: 100%;
 }
 
 @media (min-width: 48em) {
   .api form {
     flex-direction: row;
     background: url(/images/bg-shorten-desktop.svg) no-repeat right top, var(--clr-violet);
+    background-size: cover;
     margin-inline: 1.5rem;
     padding: 2rem 2.75rem;
   }
   .api form input {
     padding: 1.2rem 2rem;
     height: 55px;
+    border-radius: 7.5px;
+  }
+  .api form .errorMessage.error {
+    top: 5.4rem;
+    left: 2.8rem;
+    font-size: 12px;
   }
   .api form button {
     width: 40%;
     height: 55px;
+  }
+  .api ul {
+    margin-inline: 1.5rem;
+  }
+  .api ul li {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0rem;
+    padding: 0.9rem 1.35rem;
+  }
+  .api ul li .input, .api ul li .output {
+    font-size: 18px;
+  }
+  .api ul li .output-and-button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    gap: 1.25rem;
+    width: fit-content;
+    padding-left: 3rem;
+  }
+  .api ul li .output-and-button button {
+    width: 122px;
+  }
+  .api ul li::after {
+    display: none;
   }
 }
 @media (min-width: 1250px) {
@@ -240,6 +373,22 @@ main {
 }
 @media (min-width: 1250px) and (min-width: 64em) {
   .api form {
+    max-width: 1200px;
+    margin-inline: auto;
+  }
+}
+@media (min-width: 1250px) {
+  .api form .errorMessage.error {
+    top: 6.2rem;
+    left: 3.5rem;
+    font-size: 14px;
+  }
+  .api ul {
+    margin-inline: 1.5rem;
+  }
+}
+@media (min-width: 1250px) and (min-width: 64em) {
+  .api ul {
     max-width: 1200px;
     margin-inline: auto;
   }
@@ -317,14 +466,16 @@ main {
   line-height: 1.5rem;
 }
 
-@media (min-width: 64em) {
-  .info {
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-    gap: 6rem;
-  }
+@media (min-width: 48em) {
   .info__title {
     max-width: 460px;
+  }
+}
+@media (min-width: 64em) {
+  .info {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    gap: 6rem;
   }
   .info__cards {
     flex-direction: row;

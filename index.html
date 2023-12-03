@@ -77,7 +77,7 @@
         <div class="hero__text">
           <div>
             <h1>More than just shorter links</h1>
-            <p>
+            <p id="scrollToForm">
               Build your brand’s recognition and get detailed insights on how
               your links are performing.
             </p>
@@ -89,14 +89,22 @@
       </section>
       <!-- Api section -->
       <section class="api">
-        <form action="">
+        <form action="" id="urlForm">
           <input
             type="text"
-            name="link"
-            id="link"
+            name="inputUrl"
+            id="inputUrl"
             placeholder="Shorten a link here..."
-          /><button type="submit" class="btn btn__square">Shorten It!</button>
+          />
+          <p class="errorMessage">Please add a link!</p>
+          <button type="submit" class="btn btn__square" id="submitButton">
+            Shorten It!
+          </button>
         </form>
+        <!-- Output section -->
+        <section class="api__output">
+          <ul class="linksList"></ul>
+        </section>
       </section>
       <!-- Info section -->
       <section class="info">
@@ -169,7 +177,7 @@
         <a href=""><img src="/images/logo-white.svg" alt="Shortify logo" /></a>
         <ul>
           <li>Features</li>
-          <li><a href="">Link Shortening</a></li>
+          <li><a href="#scrollToForm">Link Shortening</a></li>
           <li><a href="">Branded Links</a></li>
           <li><a href="">Analytics</a></li>
         </ul>
@@ -223,6 +231,7 @@
       </div>
     </footer>
 
-    <script src="scripts/navbar.js"></script>
+    <script src="scripts/navigation.js"></script>
+    <script src="scripts/api.js"></script>
   </body>
 </html>

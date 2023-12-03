@@ -1,5 +1,9 @@
 @use '../abstracts/mixins' as *;
 
+main {
+  overflow-x: hidden;
+}
+
 // Hero Section
 .hero {
   @include flex(column, center, center, 3rem);
@@ -86,32 +90,146 @@
         color: var(--clr-gray-200);
         font-weight: var(--fw-500);
       }
+
+      &.error {
+        border: 2px solid var(--clr-red);
+
+        &::placeholder {
+          color: var(--clr-red-transparent);
+        }
+      }
+    }
+    
+    .errorMessage {
+      display: none;
+
+      &.error {
+        display: block;
+        position: absolute;
+        top: 3.9rem;
+        left: 1.4rem;
+
+        color: var(--clr-red);
+        font-size: 10px;
+        font-style: italic;
+      }
     }
 
     button {
       width: 100%;
       height: 48px;
+      font-size: 19px;
+    }
+  }
+
+  ul {
+    @include flex(column, center, center, 2rem);
+    @include center;
+    transform: translateY(-3rem);
+
+    li {
+      @include flex(column, center, start, 1rem);
+      border-radius: 10px;
+      padding: 0.75rem;
+
+      width: 100%;
+
+      background-color: white;
+
+      overflow: hidden;
+
+      position: relative;
+
+      &::after {
+        content: '';
+        position: absolute;
+        width: 100%;
+        right: 0;
+        left: 0;
+        top: 3rem;
+
+        background-color: var(--clr-gray-100);
+        height: 1px;
+      }
+
+      .input {
+        color: var(--clr-gray-400);
+        max-width: 74vw;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .output-and-button {
+        @include flex(column, center, start, 0.5rem);
+        width: 100%;
+
+        .output {
+          color: var(--clr-cyan);
+          max-width: 74vw;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+  
+        button {
+          width: 100%;
+        }
+      }
     }
   }
 }
-
 
 @include media(medium) {
   .api {
     form {
       flex-direction: row;
       background: url(/images/bg-shorten-desktop.svg) no-repeat right top, var(--clr-violet);
+      background-size: cover;
       margin-inline: 1.5rem;
       padding: 2rem 2.75rem;
       
       input {
         padding: 1.2rem 2rem;
         height: 55px;
+        border-radius: 7.5px;
+      }
+
+      .errorMessage.error {
+        top: 5.4rem;
+        left: 2.8rem;
+        font-size: 12px;
       }
 
       button {
         width: 40%;
         height: 55px;
+      }
+    }
+    ul {
+      margin-inline: 1.5rem;
+
+      li {
+        @include flex(row, space-between, center);
+        padding: 0.9rem 1.35rem;
+
+        .input, .output {
+          font-size: 18px;
+        }
+
+        .output-and-button {
+          @include flex(row, center, center, 1.25rem);
+          width: fit-content;
+          padding-left: 3rem;
+
+          button {
+            width: 122px;
+          }
+        }
+
+        &::after {
+          display: none;
+        }
       }
     }
   }
@@ -122,6 +240,16 @@
     form {
       @include center;
       padding: 2.75rem 3.5rem;
+
+      .errorMessage.error {
+        top: 6.2rem;
+        left: 3.5rem;
+        font-size: 14px;
+      }
+    }
+
+    ul {
+      @include center;
     }
   }
 }
@@ -190,15 +318,19 @@
   }  
 }
 
-@include media(large) {
+@include media(medium) {
   .info {
-    padding-top: 3rem;
-    padding-bottom: 8rem;
-    gap: 6rem;
-
     &__title {
       max-width: 460px;
     }
+  }
+}
+
+@include media(large) {
+  .info {
+    padding-top: 4rem;
+    padding-bottom: 8rem;
+    gap: 6rem;
 
     &__cards {
       flex-direction: row;

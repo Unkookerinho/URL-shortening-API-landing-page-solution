@@ -4,7 +4,9 @@ This is a solution to the [Shortly URL shortening API Challenge challenge on Fro
 
 ### Screenshot
 
+<img src="images/screenshot.png">
+
 ### Links
 
 - Solution URL:
-- Live Site URL:
+- Live Site URL: https://unkookerinho-shortly.netlify.app/

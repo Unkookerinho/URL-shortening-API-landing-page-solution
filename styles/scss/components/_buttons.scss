@@ -32,7 +32,21 @@
   &__square {
     @include cyanHover;
     border-radius: 5px;
-    padding: 0.6rem 2.75rem;
-    font-size: 19px;
+    padding: 0.55rem 1.8rem;
+  }
+
+  &__loading {
+    background-color: var(--clr-cyan-hover);
+  }
+
+  &__copied, &__copied:hover {
+    background-color: var(--clr-violet);
+  }
+}
+
+
+@include media(medium) {
+  .btn__square {
+    border-radius: 7.5px;
   }
 }
