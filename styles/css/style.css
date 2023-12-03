@@ -529,7 +529,7 @@ header nav ul {
   opacity: 0;
   transition: padding 0.4s, opacity 0.2s;
 }
-header nav ul .hr {
+header nav ul li.hr {
   width: 100%;
   height: 1px;
   background-color: var(--clr-violet-line);

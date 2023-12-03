@@ -8,5 +8,5 @@ This is a solution to the [Shortly URL shortening API Challenge challenge on Fro
 
 ### Links
 
-- Solution URL:
+- Solution URL: https://www.frontendmentor.io/solutions/url-shortening-api-landing-page-solution-x97m-uF8Di
 - Live Site URL: https://unkookerinho-shortly.netlify.app/
